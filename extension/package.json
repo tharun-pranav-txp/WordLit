@@ -1,0 +1,13 @@
+{
+    "name": "WordLit",
+    "version": "1.0.0",
+    "scripts": {
+        "build": "node scripts/build.mjs",
+        "watch": "node scripts/build.mjs --watch"
+    },
+    "devDependencies": {
+        "@types/chrome": "^0.1.0",
+        "esbuild": "^0.23.0",
+        "typescript": "^5.5.0"
+    }
+}

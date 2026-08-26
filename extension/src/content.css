@@ -1,0 +1,18 @@
+.WordLit-tooltip {
+    position: absolute;
+    z-index: 2147483647;
+    background: #1a1a1a;
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-family: -apple-system, sans-serif;
+    font-size: 13px;
+    max-width: 260px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+.WordLit-tooltip .wl-synonyms {
+  margin-top: 6px;
+  padding-top: 6px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}

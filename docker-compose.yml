@@ -1,0 +1,18 @@
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "5400:5400"
+    volumes:
+      - ./backend/app:/app/app
+    env_file:
+      - ./backend/.env
+    environment:
+      - RELOAD=1
+
+  extension-build:
+    build: ./extension
+    volumes:
+      - ./extension/dist:/app/dist
+      - ./extension/src:/app/src
+      - ./extension/scripts:/app/scripts
