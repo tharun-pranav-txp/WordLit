@@ -52,6 +52,75 @@
             font-weight: 600;
         }
 
+        .toggle-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 12px;
+            border: 1px solid #e2e2e2;
+            border-radius: 8px;
+            background: #fafafa;
+        }
+
+        .toggle-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .toggle-label {
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .toggle-description {
+            font-size: 11px;
+            color: #777;
+        }
+
+        .toggle {
+            position: relative;
+            width: 40px;
+            height: 22px;
+            flex-shrink: 0;
+        }
+
+        .toggle input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            inset: 0;
+            border-radius: 999px;
+            background: #ccc;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .slider::before {
+            content: "";
+            position: absolute;
+            width: 18px;
+            height: 18px;
+            left: 2px;
+            top: 2px;
+            border-radius: 50%;
+            background: #fff;
+            transition: 0.2s;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+        }
+
+        .toggle input:checked + .slider {
+            background: #1a1a1a;
+        }
+
+        .toggle input:checked + .slider::before {
+            transform: translateX(18px);
+        }
+
         .lookup-row {
             display: flex;
             gap: 8px;
@@ -131,6 +200,32 @@
     <h1>WordLit</h1>
 
     <div class="section">
+        <div class="toggle-row">
+            <div class="toggle-info">
+                <div class="toggle-label">
+                    WordLit
+                </div>
+
+                <div
+                    id="toggle-description"
+                    class="toggle-description"
+                >
+                    Active on web pages
+                </div>
+            </div>
+
+            <label class="toggle">
+                <input
+                    id="wordlit-toggle"
+                    type="checkbox"
+                />
+
+                <span class="slider"></span>
+            </label>
+        </div>
+    </div>
+
+    <div class="section">
         <div class="section-title">
             Summarize current page
         </div>
@@ -146,7 +241,12 @@
         </div>
 
         <div class="lookup-row">
-            <input id="word-input" type="text" placeholder="Enter one word" autocomplete="off" />
+            <input
+                id="word-input"
+                type="text"
+                placeholder="Enter one word"
+                autocomplete="off"
+            />
 
             <button id="lookup-button">
                 Search
@@ -165,14 +265,24 @@
             Checking connection...
         </div>
 
-        <div id="notion-connect-form" class="notion-fields">
+        <div
+            id="notion-connect-form"
+            class="notion-fields"
+        >
             <button id="connect-notion">
                 Connect Notion
             </button>
         </div>
 
-        <div id="notion-connected-actions" class="notion-actions" style="display: none;">
-            <button id="disconnect-notion" class="secondary-button">
+        <div
+            id="notion-connected-actions"
+            class="notion-actions"
+            style="display: none;"
+        >
+            <button
+                id="disconnect-notion"
+                class="secondary-button"
+            >
                 Disconnect
             </button>
         </div>

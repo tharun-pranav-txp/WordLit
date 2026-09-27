@@ -1,3 +1,21 @@
+let wordlitEnabled = true;
+
+async function loadWordLitState() {
+    const stored =
+        await chrome.storage.local.get(
+            "wordlitEnabled"
+        );
+
+    wordlitEnabled =
+        stored.wordlitEnabled !== false;
+
+    if (!wordlitEnabled) {
+        removeTooltip();
+    }
+}
+
+loadWordLitState();
+
 let tooltipEl: HTMLDivElement | null = null;
 let tooltipX = 0;
 let tooltipY = 0;
@@ -276,6 +294,10 @@ function showSelectionActions(
 }
 
 document.addEventListener("mouseup", (event) => {
+    if (!wordlitEnabled) {
+        return;
+    }
+
     // Do not let the page selection handler
     // remove the tooltip before button click fires.
     if (tooltipEl && tooltipEl.contains(event.target as Node)) {
@@ -312,6 +334,10 @@ let selectionTimeout: number | null = null;
 let lastSelectionText = "";
 
 document.addEventListener("selectionchange", () => {
+    if (!wordlitEnabled) {
+        return;
+    }
+
     if (selectionTimeout !== null) {
         window.clearTimeout(selectionTimeout);
     }
@@ -400,6 +426,33 @@ chrome.runtime.onMessage.addListener(
                 ok: true,
                 text: limitedPageText,
             });
+        }
+    }
+);
+
+chrome.storage.onChanged.addListener(
+    (changes, areaName) => {
+        if (
+            areaName !== "local" ||
+            !changes.wordlitEnabled
+        ) {
+            return;
+        }
+
+        wordlitEnabled =
+            changes.wordlitEnabled.newValue !== false;
+
+        if (!wordlitEnabled) {
+            removeTooltip();
+
+            const selection =
+                window.getSelection();
+
+            if (selection) {
+                selection.removeAllRanges();
+            }
+
+            lastSelectionText = "";
         }
     }
 );

@@ -45,6 +45,58 @@ const disconnectNotionButton =
         "disconnect-notion"
     ) as HTMLButtonElement;
 
+const wordlitToggle =
+    document.getElementById(
+        "wordlit-toggle"
+    ) as HTMLInputElement;
+
+const toggleDescription =
+    document.getElementById(
+        "toggle-description"
+    ) as HTMLDivElement;
+
+async function getWordLitEnabled(): Promise<boolean> {
+    const stored =
+        await chrome.storage.local.get(
+            "wordlitEnabled"
+        );
+
+    return stored.wordlitEnabled !== false;
+}
+
+
+async function updateWordLitToggle() {
+    const enabled =
+        await getWordLitEnabled();
+
+    wordlitToggle.checked = enabled;
+
+    toggleDescription.textContent =
+        enabled
+            ? "Active on web pages"
+            : "Paused on web pages";
+}
+
+
+async function toggleWordLit() {
+    const enabled =
+        wordlitToggle.checked;
+
+    await chrome.storage.local.set({
+        wordlitEnabled: enabled,
+    });
+
+    toggleDescription.textContent =
+        enabled
+            ? "Active on web pages"
+            : "Paused on web pages";
+
+    if (!enabled) {
+        await chrome.runtime.sendMessage({
+            type: "WORDLIT_DISABLED",
+        });
+    }
+}
 
 function showResult(
     html: string
@@ -553,5 +605,12 @@ disconnectNotionButton.addEventListener(
     "click",
     disconnectNotion
 );
+
+wordlitToggle.addEventListener(
+    "change",
+    toggleWordLit
+);
+
+updateWordLitToggle();
 
 updateNotionStatus();
