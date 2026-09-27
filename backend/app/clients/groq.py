@@ -8,6 +8,7 @@ class GroqClient:
         self.client = AsyncGroq(
             api_key=GROQ_API_KEY,
         )
+
         self.model = GROQ_MODEL
 
     async def generate(
@@ -18,17 +19,13 @@ class GroqClient:
         completion = await self.client.chat.completions.create(
             model=self.model,
             messages=[
-                {
-                    "role": "system",
-                    "content": system_prompt,
-                },
-                {
-                    "role": "user",
-                    "content": user_prompt,
-                },
+                {"role": "system", "content": system_prompt},
+                {"role": "user", "content": user_prompt},
             ],
-            temperature=0,
-            max_tokens=500,
+            temperature=0.6,
+            max_completion_tokens=2000,
+            reasoning_effort="low",
+            include_reasoning=False,
         )
 
         if not completion.choices:
@@ -38,4 +35,11 @@ class GroqClient:
 
         message = completion.choices[0].message
 
-        return message.content or ""
+        content = message.content or ""
+
+        if not content.strip():
+            raise ValueError(
+                "Model returned empty content"
+            )
+
+        return content

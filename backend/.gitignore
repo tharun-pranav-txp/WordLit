@@ -17,3 +17,5 @@ venv/
 
 # OS
 .DS_Store
+
+notion_connection.json

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WordLit</title>
+
+    <style>
+        body {
+            width: 320px;
+            margin: 0;
+            padding: 16px;
+            font-family:
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                sans-serif;
+            color: #1a1a1a;
+            background: #ffffff;
+        }
+
+        h1 {
+            margin: 0 0 16px;
+            font-size: 20px;
+        }
+
+        button {
+            width: 100%;
+            padding: 9px 12px;
+            border: 0;
+            border-radius: 6px;
+            background: #1a1a1a;
+            color: #ffffff;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .section {
+            margin-bottom: 18px;
+        }
+
+        .section-title {
+            margin-bottom: 8px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .lookup-row {
+            display: flex;
+            gap: 8px;
+        }
+
+        input {
+            box-sizing: border-box;
+            width: 100%;
+            min-width: 0;
+            padding: 8px 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 13px;
+            outline: none;
+        }
+
+        .lookup-row input {
+            flex: 1;
+        }
+
+        .lookup-row button {
+            width: auto;
+            white-space: nowrap;
+        }
+
+        .notion-fields {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .notion-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .notion-actions button {
+            flex: 1;
+        }
+
+        .secondary-button {
+            background: #eeeeee;
+            color: #1a1a1a;
+        }
+
+        #result {
+            margin-top: 10px;
+            font-size: 13px;
+            line-height: 1.45;
+        }
+
+        .meaning {
+            margin-bottom: 8px;
+        }
+
+        .synonyms {
+            color: #555;
+        }
+
+        .error {
+            color: #b00020;
+        }
+
+        .success {
+            color: #087f23;
+        }
+
+        .status {
+            margin-bottom: 8px;
+            font-size: 12px;
+            color: #555;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>WordLit</h1>
+
+    <div class="section">
+        <div class="section-title">
+            Summarize current page
+        </div>
+
+        <button id="summarize-page">
+            Summarize Page
+        </button>
+    </div>
+
+    <div class="section">
+        <div class="section-title">
+            Look up a word
+        </div>
+
+        <div class="lookup-row">
+            <input id="word-input" type="text" placeholder="Enter one word" autocomplete="off" />
+
+            <button id="lookup-button">
+                Search
+            </button>
+        </div>
+
+        <div id="result"></div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">
+            Notion
+        </div>
+
+        <div id="notion-status" class="status">
+            Checking connection...
+        </div>
+
+        <div id="notion-connect-form" class="notion-fields">
+            <button id="connect-notion">
+                Connect Notion
+            </button>
+        </div>
+
+        <div id="notion-connected-actions" class="notion-actions" style="display: none;">
+            <button id="disconnect-notion" class="secondary-button">
+                Disconnect
+            </button>
+        </div>
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+
+</html>

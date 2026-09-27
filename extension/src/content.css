@@ -3,16 +3,75 @@
     z-index: 2147483647;
     background: #1a1a1a;
     color: #fff;
-    padding: 8px 12px;
-    border-radius: 6px;
-    font-family: -apple-system, sans-serif;
+    padding: 10px 12px;
+    border-radius: 8px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     font-size: 13px;
-    max-width: 260px;
+    line-height: 1.45;
+    max-width: 420px;
+    max-height: 360px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    box-sizing: border-box;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
 }
 
 .WordLit-tooltip .wl-synonyms {
-  margin-top: 6px;
-  padding-top: 6px;
-  border-top: 1px solid rgba(255, 255, 255, 0.2);
+    margin-top: 6px;
+    padding-top: 6px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.WordLit-tooltip .wl-summarize-button {
+    margin-top: 10px;
+    padding: 6px 10px;
+    border: 0;
+    border-radius: 5px;
+    background: #ffffff;
+    color: #1a1a1a;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.WordLit-tooltip .wl-summarize-button:hover {
+    opacity: 0.9;
+}
+
+.WordLit-tooltip .wl-save-button {
+    margin-top: 10px;
+    padding: 6px 10px;
+    border: 0;
+    border-radius: 5px;
+    background: #ffffff;
+    color: #1a1a1a;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.WordLit-tooltip .wl-save-button:hover {
+    opacity: 0.9;
+}
+
+.WordLit-tooltip .wl-save-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.WordLit-tooltip .wl-selection-text {
+    margin-bottom: 12px;
+    max-height: 220px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    white-space: normal;
+    overflow-wrap: anywhere;
+}
+
+.WordLit-tooltip .wl-summary {
+    margin-top: 6px;
+}
+
+.notion-fields {
+    display: block;
 }

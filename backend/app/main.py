@@ -6,7 +6,9 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from app.dependencies import http_client
 from app.routes.health import router as health_router
+from app.routes.summary import router as summary_router
 from app.routes.word import router as word_router
+from app.routes.notion import router as notion_router
 
 
 # ------------------------------------------------------------------
@@ -48,6 +50,14 @@ app.add_middleware(
 
 app.include_router(
     word_router,
+)
+
+app.include_router(
+    summary_router,
+)
+
+app.include_router(
+    notion_router,
 )
 
 app.include_router(

@@ -1,0 +1,15 @@
+{
+    "wordlit-dev": {
+        "notion_token": "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",
+        "parent_page_id": "3e7e62e0-74c1-8050-9661-f2722675c439"
+    },
+    "3c1f3158-1d60-4cf7-9527-57e95f9d3070": {
+        "notion_token": "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",
+        "workspace_id": "23be62e0-74c1-81cc-ae6d-0003504a2c5c",
+        "workspace_name": "Tharun Pranav\u2019s Space",
+        "bot_id": "3e7e62e0-74c1-81b1-923b-00273f15a2a8",
+        "parent_page_id": "3e8e62e0-74c1-81f4-85b4-d0c25f72aa08",
+        "auth_type": "disconnected",
+        "wordlit_page_id": "3e8e62e0-74c1-81f4-85b4-d0c25f72aa08"
+    }
+}
