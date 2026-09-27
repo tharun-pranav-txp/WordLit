@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 
-DICTIONARY_API = os.environ["DICTIONARY_API"].rstrip("/")
+DATAMUSE_API = os.environ["DATAMUSE_API"].rstrip("/")
 
 GROQ_API_KEY = os.environ["GROQ_API_KEY"]
 

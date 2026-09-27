@@ -2,7 +2,7 @@ from typing import Any
 
 import httpx
 
-from app.config import DICTIONARY_API
+from app.config import DATAMUSE_API
 
 
 class DatamuseClient:
@@ -11,7 +11,7 @@ class DatamuseClient:
 
     async def fetch_definitions(self, word: str) -> list[dict[str, Any]]:
         response = await self.http_client.get(
-            f"{DICTIONARY_API}/words",
+            f"{DATAMUSE_API}/words",
             params={
                 "sp": word,
                 "md": "d",
@@ -40,7 +40,7 @@ class DatamuseClient:
 
     async def fetch_synonyms(self, word: str) -> list[str]:
         response = await self.http_client.get(
-            f"{DICTIONARY_API}/words",
+            f"{DATAMUSE_API}/words",
             params={
                 "rel_syn": word,
                 "max": 20,
